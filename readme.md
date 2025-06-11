@@ -1,5 +1,5 @@
-# DineHub - Restaurant Ordering System
-DineHub is a comprehensive restaurant ordering system built using Spring Cloud. It provides functionalities for both ordinary users and administrators to manage orders, users, menus, and more.
+# CloudNative - Restaurant Ordering System
+This is a comprehensive restaurant ordering system built using Spring Cloud. It provides functionalities for both ordinary users and administrators to manage orders, users, menus, and more.
 
 ## Microservices
 The system is composed of several microservices:
