@@ -48,7 +48,7 @@ Add, edit, or delete menu items.
 
 ## Getting Started
 ### Clone the Repository:
-git clone https://github.com/wulitina/DineHub.git
+git clone (https://github.com/SaintNameless/CloudNative)
 ### Set up Configuration:
 Update configuration files in the Config Server according to your environment.
 ### Build and Run Microservices:
@@ -103,4 +103,4 @@ Administrators can manage users, orders, and menus.
 
 
 ## Contributors
-YanXu (Tina)
+Gui Qing, Wang Lijin, Yang Shuhang
