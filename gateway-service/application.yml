@@ -1,0 +1,26 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #开启以服务id去注册中心上获取转发地址
+          enabled: true
+          ##小写serviceId
+          lower-case-service-id: true
+      routes:
+        - id: client
+          uri: lb://client
+          predicates:
+            - Path=/product/**
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: 192.168.196.100:8761/eureka

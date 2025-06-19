@@ -1,0 +1,149 @@
+# ============== ConfigServer 修复版 ==============
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configserver
+  labels:
+    app: configserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configserver
+  template:
+    metadata:
+      labels:
+        app: configserver
+    spec:
+      containers:
+        - name: configserver
+          image: crpi-m2no0xxy7uyli88r.cn-qingdao.personal.cr.aliyuncs.com/hitwh/configserver:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8050
+          env:
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: "http://localhost:8761/eureka/"
+            - name: SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCHLOCATIONS
+              value: "file:/shared-config"
+            - name: JAVA_OPTS
+              value: "-Xms128m -Xmx256m -XX:+UseG1GC"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /shared-config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: configserver-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: configserver
+spec:
+  selector:
+    app: configserver
+  ports:
+    - protocol: TCP
+      port: 8050
+      targetPort: 8050
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configserver-config
+data:
+  application.yml: |
+    server:
+      port: 8050
+    spring:
+      application:
+        name: configserver
+      # 关键修复：移除 profile 激活
+      cloud:
+        config:
+          server:
+            native:
+              search-locations: file:/shared-config
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka/
+
+  # 微服务配置修复：统一使用正确的 YAML 语法
+  menu.yml: |
+    spring:
+      application:
+        name: menu
+      profiles:
+        active: dev
+      cloud:  # 修复：保持正确的缩进层级
+        config:
+          uri: http://configserver:8050
+          fail-fast: true
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka/
+
+  order.yml: |
+    spring:
+      application:
+        name: order
+      profiles:
+        active: dev
+      cloud:
+        config:
+          uri: http://configserver:8050
+          fail-fast: true
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka/
+
+  user.yml: |
+    spring:
+      application:
+        name: user
+      profiles:
+        active: dev
+      cloud:
+        config:
+          uri: http://configserver:8050
+          fail-fast: true
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka/
+
+  account.yml: |
+    spring:
+      application:
+        name: account
+      profiles:
+        active: dev
+      cloud:
+        config:
+          uri: http://configserver:8050
+          fail-fast: true
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka/
+
+  client.yml: |
+    spring:
+      application:
+        name: client
+      profiles:
+        active: dev
+      cloud:
+        config:
+          uri: http://configserver:8050
+          fail-fast: true
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka/
