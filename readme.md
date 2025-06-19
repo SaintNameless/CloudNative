@@ -1,5 +1,5 @@
 # CloudNative - Restaurant Ordering System
-This is a comprehensive restaurant ordering system built using Spring Cloud. It provides functionalities for both ordinary users and administrators to manage orders, users, menus, and more.
+This is a comprehensive restaurant ordering system built using Spring Cloud. It provides functionalities for both ordinary users and administrators to manage orders, users, menus, and more. A CloudNative program (k8s+containered) is based on this order-system to build.
 
 ## Microservices
 The system is composed of several microservices:
@@ -8,6 +8,8 @@ The system is composed of several microservices:
 Eureka Server: Service registry for microservices.
 
 Config Server: Centralized configuration management.
+
+Gateway Server: Gateway acts as a single entry point to the micro-service, handling request routing, authentication, and load balancing.
 
 Account Service: Manages user accounts and authentication.
 
@@ -71,35 +73,6 @@ Access the application through the provided login interface.
 Ordinary users can register and place orders.
 
 Administrators can manage users, orders, and menus.
-
-
-
-## Key Page Screenshot
-
-![1](readmePictures/1.png)
-
-![2](readmePictures/2.png)
-
-![3](readmePictures/3.png)
-
-![4](readmePictures/4.png)
-
-![5](readmePictures/5.png)
-
-![6](readmePictures/6.png)
-
-![7](readmePictures/7.png)
-
-![8](readmePictures/8.png)
-
-![9](readmePictures/9.png)
-
-![10](readmePictures/10.png)
-
-![11](readmePictures/11.png)
-
-![12](readmePictures/12.png)
-
 
 
 ## Contributors
