@@ -19,19 +19,6 @@ Order Service: Manages order information.
 
 User Service: Manages user information.
 
-## Database
-DineHub utilizes MySQL as its database management system with the following tables:
-
-
-t_admin: Stores administrator information.
-
-t_menu: Contains menu item details.
-
-t_order: Stores order information.
-
-t_type: Holds information about menu item types.
-
-t_user: Stores user information.
 
 ## Functionality
 ### For Ordinary Users:
@@ -52,28 +39,28 @@ Add, edit, or delete menu items.
 ### Clone the Repository:
 git clone (https://github.com/SaintNameless/CloudNative)
 ### Set up Configuration:
-Update configuration files in the Config Server according to your environment.
-### Build and Run Microservices:
-Build and run each microservice using Maven or your preferred build tool.
-
+Update configuration files in the Config Server and the Gateway Server according to your environment.
+### Build and Package Microservices:
+Build and package each microservice using Maven.
+'''Bash
+mvn clean package
+'''
+Using Dockerfile to build images.
+'''Bash
+docker build -f .
+'''
+Deploy your images on the k8s-environment.
+'''Bash
+kubectl create -f k8s-deployment/*.yaml
+'''
 Ensure proper communication between microservices.
 
 ### Database Setup:
 Create a MySQL database and import the provided schema.
-### Run the Application:
-Start the Eureka Server.
-
-Start the Config Server.
-
-Start all other microservices.
-
-### Accessing the Application:
-Access the application through the provided login interface.
-
-Ordinary users can register and place orders.
-
-Administrators can manage users, orders, and menus.
 
 
 ## Contributors
 Gui Qing, Wang Lijin, Yang Shuhang
+
+## Acknowledge
+Yanxu(Tina) (https://github.com/SaintNameless/CloudNative)
