@@ -43,22 +43,19 @@ Update configuration files in the Config Server and the Gateway Server according
 ### Build and Package Microservices:
 Build and package each microservice using Maven.
 
-'Bash'
-
-'mvn clean package'
+Bash
+`mvn clean package`
 
 Using Dockerfile to build images.
 
-'Bash'
-
-'docker build -f .'
+Bash
+`docker build -f .`
 
 
 Deploy your images on the k8s-environment.
 
-'Bash'
-
-'kubectl create -f k8s-deployment/*.yaml'
+Bash
+`kubectl create -f k8s-deployment/*.yaml`
 
 Ensure proper communication between microservices.
 
