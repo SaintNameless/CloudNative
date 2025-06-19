@@ -42,17 +42,23 @@ git clone (https://github.com/SaintNameless/CloudNative)
 Update configuration files in the Config Server and the Gateway Server according to your environment.
 ### Build and Package Microservices:
 Build and package each microservice using Maven.
+
 '''Bash
 mvn clean package
 '''
+
 Using Dockerfile to build images.
+
 '''Bash
 docker build -f .
 '''
+
 Deploy your images on the k8s-environment.
+
 '''Bash
 kubectl create -f k8s-deployment/*.yaml
 '''
+
 Ensure proper communication between microservices.
 
 ### Database Setup:
@@ -63,4 +69,4 @@ Create a MySQL database and import the provided schema.
 Gui Qing, Wang Lijin, Yang Shuhang
 
 ## Acknowledge
-Yanxu(Tina) (https://github.com/SaintNameless/CloudNative)
+Yanxu(Tina) (https://github.com/wulitina/Restaurant-Ordering-System)
